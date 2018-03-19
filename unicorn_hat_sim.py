@@ -1,14 +1,16 @@
 import sys
 import colorsys
-import pygame.gfxdraw
 
 try:
     import pygame
+    import pygame.gfxdraw
 except ImportError:
-    print("To simulate a unicorn HAT on your computer, please pip install pygame")
+    print("To simulate a unicorn HAT on your computer, "
+          "please pip install pygame")
+
 
 class UnicornHatSim(object):
-    def __init__(self, width, height, rotation_offset = 0):
+    def __init__(self, width, height, rotation_offset=0):
         # Compat with old library
         self.AUTO = None
         self.PHAT = None
@@ -26,7 +28,8 @@ class UnicornHatSim(object):
         # Init pygame and off we go
         pygame.init()
         pygame.display.set_caption("Unicorn HAT simulator")
-        self.screen = pygame.display.set_mode([self.window_width, self.window_height])
+        self.screen = pygame.display.set_mode(
+            [self.window_width, self.window_height])
         self.clear()
 
     def set_pixel(self, x, y, r, g, b):
@@ -34,7 +37,7 @@ class UnicornHatSim(object):
         self.pixels[i] = [int(r), int(g), int(b)]
 
     def draw(self):
-        for event in pygame.event.get(): # User did something
+        for event in pygame.event.get():  # User did something
             if event.type == pygame.QUIT:
                 print("Exiting...")
                 sys.exit()
@@ -49,7 +52,7 @@ class UnicornHatSim(object):
         pygame.display.flip()
 
     def draw_led(self, x, y):
-        self.draw_gfxcircle(x,y)
+        self.draw_gfxcircle(x, y)
 
     def draw_gfxcircle(self, x, y):
         p = self.pixel_size
@@ -61,7 +64,7 @@ class UnicornHatSim(object):
         pygame.gfxdraw.filled_circle(self.screen, w_x, w_y, r, color)
 
     def get_shape(self):
-        return (self.width, self.height)
+        return self.width, self.height
 
     def brightness(self, *args):
         pass
@@ -104,10 +107,11 @@ class UnicornHatSim(object):
             yy = self.width - 1 - x
         return (xx * self.width) + yy
 
+
 # SD hats works as expected
-unicornhat = UnicornHatSim(8,8)
+unicornhat = UnicornHatSim(8, 8)
 unicornphat = UnicornHatSim(8, 4)
 
-# Unicornhat HD seems to be the other way around (not that there's anything wrong with that), so we rotate it 180°
+# Unicornhat HD seems to be the other way around (not that there's anything
+# wrong with that), so we rotate it 180 degree
 unicornhathd = UnicornHatSim(16, 16, 180)
-
