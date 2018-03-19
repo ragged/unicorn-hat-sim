@@ -17,4 +17,5 @@ setup(
     author='jayniz',
     author_email='jannis@gmail.com',
     py_modules=['unicorn_hat_sim.py'],
+    install_requires=['pygame'],
 )
