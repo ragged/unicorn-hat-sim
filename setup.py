@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 from codecs import open
 from os import path
 
@@ -17,5 +17,6 @@ setup(
     author='jayniz',
     author_email='jannis@gmail.com',
     py_modules=['unicorn_hat_sim.py'],
+    packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
     install_requires=['pygame'],
 )
